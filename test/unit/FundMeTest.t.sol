@@ -37,7 +37,7 @@ contract FundMeTest is Test {
     }
 
     function testPriceFeedVersionIsAccurate() public view {
-        uint version = fundMe.getVersion();
+        uint256 version = fundMe.getVersion();
         assertEq(version, 4);
     }
 
@@ -85,10 +85,7 @@ contract FundMeTest is Test {
         uint256 endingFundMeBalance = address(fundMe).balance;
         uint256 endingOwnerBalance = fundMe.getOwner().balance;
         assertEq(endingFundMeBalance, 0);
-        assertEq(
-            startingFundMeBalance + startingOwnerBalance,
-            endingOwnerBalance
-        );
+        assertEq(startingFundMeBalance + startingOwnerBalance, endingOwnerBalance);
     }
 
     function testPrintStorageData() public {
@@ -99,7 +96,7 @@ contract FundMeTest is Test {
         }
         console.log("PriceFeed address:", address(fundMe.getPriceFeed()));
     }
-    
+
     function testWithdrawFromMultipleFundersCheaper() public funded {
         uint160 numberOfFunders = 10;
         uint160 startingFunderIndex = 1;
@@ -109,7 +106,7 @@ contract FundMeTest is Test {
             hoax(address(i), SEND_VALUE);
             fundMe.fund{value: SEND_VALUE}();
         }
-        
+
         uint256 startingFundMeBalance = address(fundMe).balance;
         uint256 startingOwnerBalance = fundMe.getOwner().balance;
 

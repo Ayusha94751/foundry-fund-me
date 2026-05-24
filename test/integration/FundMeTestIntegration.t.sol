@@ -16,7 +16,6 @@ contract InteractionsTest is Test {
 
     address alice = makeAddr("alice");
 
-
     function setUp() external {
         deployFundMe = new DeployFundMe();
         fundMe = deployFundMe.run();
@@ -38,7 +37,7 @@ contract InteractionsTest is Test {
         uint256 afterOwnerBalance = address(fundMe.getOwner()).balance;
 
         assert(address(fundMe).balance == 0);
-        assertEq(afterUserBalance , preUserBalance - SEND_VALUE);
+        assertEq(afterUserBalance, preUserBalance - SEND_VALUE);
         assertEq(preOwnerBalance + SEND_VALUE, afterOwnerBalance);
     }
 }
